@@ -12,5 +12,6 @@
     <color name="red">#FF0000</color>
     <color name="purple">#800080</color>
     <color name="main_color">#1B2F5D</color>
+    <color name="secondery_color">#F36D72</color>
 
 </resources>
