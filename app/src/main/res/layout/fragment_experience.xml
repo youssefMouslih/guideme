@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.experience">
+
+    <ImageView
+        android:id="@+id/imageExperience"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_marginTop="-5dp"
+        android:src="@color/secondery_color"
+        android:text="@string/hello_blank_fragment" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="left">
+
+            <ImageView
+                android:id="@+id/imageBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="left"
+                android:src="@color/blue"
+                android:text="@string/hello_blank_fragment" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="right">
+
+            <ImageView
+                android:id="@+id/imageCertified"
+
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="right"
+                android:src="#F30F18"
+                android:text="@string/hello_blank_fragment" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="630dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="-25dp"
+        app:cardCornerRadius="40dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvExperienceTitle"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="expiernece name"
+                android:textColor="@color/black"
+                android:layout_marginBottom="8dp"
+                android:textSize="23sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="left"
+                    android:src="@color/blue"
+                    android:text="@string/hello_blank_fragment" />
+
+                <TextView
+                    android:id="@+id/tvExperienceCity"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="Location"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvExperienceRate"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.9"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/rtbExperienceRate"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginLeft="-55dp"
+                    android:layout_marginTop="-15dp"
+                    android:scaleX="0.4"
+                    android:scaleY="0.4" />
+
+            </LinearLayout>
+
+            <!-- SlidingTabLayout -->
+            <com.flyco.tablayout.SlidingTabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:gravity="center"
+                app:tl_indicator_color="@color/secondery_color"
+                app:tl_indicator_height="3dp"
+                app:tl_textSelectColor="@color/secondery_color"
+                app:tl_textUnselectColor="@android:color/darker_gray" />
+
+            <!-- ViewPager for tab content -->
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15sp"
+                android:layout_marginBottom="35dp"
+                android:backgroundTint="@color/main_color"
+
+                app:cardCornerRadius="40dp">
+
+                <Button
+                    android:id="@+id/btBookNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/main_color"
+                    android:text="Réserver maintenant" />
+
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
