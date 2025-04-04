@@ -2,12 +2,14 @@ package com.ysf.mslh.guideme.fragmentsExperience;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
-import android.widget.ViewSwitcher;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,9 +21,10 @@ import java.util.List;
 
 public class ExperiencePhotos extends Fragment {
     private ImageSwitcher imageSwitcher;
-    private List<String> imageUrls;
+    private List<Integer> imageResources;
     private int currentIndex = 0;
-    private Handler handler = new Handler();
+    private TextView indicatorTextView;  // Add a TextView to show the indicator
+    private GestureDetector gestureDetector;
 
     public ExperiencePhotos() {
     }
@@ -31,31 +34,74 @@ public class ExperiencePhotos extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_experience_photos, container, false);
         imageSwitcher = view.findViewById(R.id.imageSwitcher);
+        indicatorTextView = view.findViewById(R.id.indicatorTextView);  // Find the indicator TextView
 
+        // Set up the ImageSwitcher
         imageSwitcher.setFactory(() -> {
             ImageView imageView = new ImageView(getContext());
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
             return imageView;
         });
 
-        imageUrls = new ArrayList<>();
-        imageUrls.add("https://i.postimg.cc/7Y8qNXyn/11162158-symboles-de-permis-de-conduire-vectoriel.jpg");
-        imageUrls.add("https://example.com/image2.jpg");
-        imageUrls.add("https://example.com/image3.jpg");
+        imageResources = new ArrayList<>();
+        // Add drawable resources here
+        imageResources.add(R.drawable.ic_baseline_map_24);  // Replace with actual drawable resource IDs
+        imageResources.add(R.drawable.ic_baseline_person_24);
+        imageResources.add(R.drawable.ic_home);
 
-        startImageSwitcher();
+        // Set up GestureDetector for swipe detection
+        gestureDetector = new GestureDetector(requireContext(), new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+                // Detect swipe direction (left or right)
+                if (e1.getX() - e2.getX() > 100) {
+                    // Swipe left
+                    showNextImage();
+                } else if (e2.getX() - e1.getX() > 100) {
+                    // Swipe right
+                    showPreviousImage();
+                }
+                return super.onFling(e1, e2, velocityX, velocityY);
+            }
+        });
 
+        view.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
+
+        updateImage(); // Display the first image
         return view;
     }
 
-    private void startImageSwitcher() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Glide.with(requireContext()).load(imageUrls.get(currentIndex)).into((ImageView) imageSwitcher.getCurrentView());
-                currentIndex = (currentIndex + 1) % imageUrls.size();
-                handler.postDelayed(this, 3000);
-            }
-        }, 3000);
+    // Show the next image
+    private void showNextImage() {
+        currentIndex = (currentIndex + 1) % imageResources.size();
+        updateImage();
+    }
+
+    // Show the previous image
+    private void showPreviousImage() {
+        currentIndex = (currentIndex - 1 + imageResources.size()) % imageResources.size();
+        updateImage();
+    }
+
+    // Update the displayed image and the indicator
+    private void updateImage() {
+        Glide.with(requireContext())
+                .load(imageResources.get(currentIndex))  // Load image from drawable
+                .into((ImageView) imageSwitcher.getCurrentView());
+
+        // Update the indicator
+        updateIndicator();
+    }
+
+    // Update the indicator TextView with the current index (1-based index)
+    private void updateIndicator() {
+        String indicatorText = (currentIndex + 1) + "/" + imageResources.size();
+        indicatorTextView.setText(indicatorText);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Clear any pending actions in the handler
     }
 }
