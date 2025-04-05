@@ -12,7 +12,8 @@ import com.ysf.mslh.guideme.fragments.HomeFragment;
 import com.ysf.mslh.guideme.fragments.ProfileFragment;
 import com.ysf.mslh.guideme.fragments.experience;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener {
+public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener,experience.OnFragmentInteractionListener
+{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 selectedFragment = new DiscoverFragment();
                 break;
             case 2:
-                selectedFragment = new experience();
+                selectedFragment = new CommunityFragment();
                 break;
             case 3:
                 selectedFragment = new ProfileFragment();
@@ -78,4 +79,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
 
     @Override
     public void onTabReselected(int position) {}
+    // This method is called from the experience fragment to switch to the Home tab
+    @Override
+    public void onBackToHomeTab() {
+        // Change selected tab to the first tab (Home)
+        BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
+        if (bottomNavigationBar != null) {
+            bottomNavigationBar.selectTab(0); // Select the Home tab
+        }
+    }
+
 }

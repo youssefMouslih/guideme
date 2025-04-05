@@ -1,56 +1,67 @@
 package com.ysf.mslh.guideme.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
-import com.flyco.tablayout.SlidingTabLayout;
 import com.ysf.mslh.guideme.R;
-import com.ysf.mslh.guideme.adapters.ViewPagerAdapter;
-import com.ysf.mslh.guideme.fragmentsExperience.ExperienceAbout;
-import com.ysf.mslh.guideme.fragmentsExperience.ExperienceMap;
-import com.ysf.mslh.guideme.fragmentsExperience.ExperiencePhotos;
-import com.ysf.mslh.guideme.fragmentsExperience.ExperienceReviews;
-import com.ysf.mslh.guideme.fragmentsExperience.ExperienceVideos;
-
 public class experience extends Fragment {
+    private OnFragmentInteractionListener mListener;
+    private ImageView    backButton;
+    private ExperienceBottomSheet bottomSheet;
 
-    private SlidingTabLayout tabLayout;
-    private ViewPager viewPager;
+    // Interface for communication with MainActivity
+    public interface OnFragmentInteractionListener {
+        void onBackToHomeTab(); // Callback method to switch to Home tab
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_experience, container, false);
+        View view = inflater.inflate(R.layout.fragment_experience, container, false);
+        backButton = view.findViewById(R.id.imageBack);
+
+        backButton.setOnClickListener(v -> {
+            // Dismiss BottomSheet
+            bottomSheet.dismiss();
+            // Notify MainActivity to select the first tab
+            if (mListener != null) {
+                mListener.onBackToHomeTab(); // Notify activity to switch to Home tab
+            }
+        });
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        bottomSheet = ExperienceBottomSheet.newInstance();
+        bottomSheet.show(requireActivity().getSupportFragmentManager(), bottomSheet.getTag());
+        bottomSheet.setCancelable(false);
+    }
 
-        // Initialisation des vues
-        tabLayout = view.findViewById(R.id.tabLayout);
-        viewPager = view.findViewById(R.id.viewPager);
+    // This method allows the activity to pass the listener
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
+    }
 
-        // Initialisation de l'adaptateur pour le ViewPager
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-
-        // Ajouter des fragments et leurs titres
-        adapter.addFragment(new ExperienceAbout(), "About");
-        adapter.addFragment(new ExperienceReviews(), "Reviews");
-        adapter.addFragment(new ExperiencePhotos(), "Photos");
-        adapter.addFragment(new ExperienceVideos(), "Videos");
-        adapter.addFragment(new ExperienceMap(), "Map");
-
-        // Définir l'adaptateur pour le ViewPager
-        viewPager.setAdapter(adapter);
-
-        // Lier le SlidingTabLayout avec le ViewPager
-        tabLayout.setViewPager(viewPager);
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
     }
 }

@@ -13,4 +13,17 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="BottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/CustomBottomSheetStyle</item>
+    </style>
+
+    <style name="CustomBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="AppTheme.AppIntro" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">#F06292</item>
+        <item name="colorPrimaryDark">#E91E63</item>
+        <item name="colorAccent">#F06292</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
 </resources>

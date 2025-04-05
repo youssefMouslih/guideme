@@ -14,4 +14,12 @@
     <color name="main_color">#1B2F5D</color>
     <color name="secondery_color">#F36D72</color>
 
+    <color name="colorPrimary">#FFFFFF</color>
+    <color name="colorPrimaryDark">#FFFFFF</color>
+    <color name="colorAccent">#3897F0</color>
+    <color name="instagram_blue">#3897F0</color>
+    <color name="instagram_black">#262626</color>
+    <color name="instagram_grey">#FAFAFA</color>
+    <color name="instagram_separator">#DBDBDB</color>
+
 </resources>
