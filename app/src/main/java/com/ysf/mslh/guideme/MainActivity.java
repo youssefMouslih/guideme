@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.ysf.mslh.guideme.fragments.CommunityFragment;
+import com.ysf.mslh.guideme.fragments.CreditCardScannerFragment;
 import com.ysf.mslh.guideme.fragments.DiscoverFragment;
 import com.ysf.mslh.guideme.fragments.HomeFragment;
 import com.ysf.mslh.guideme.fragments.ProfileFragment;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 selectedFragment = new HomeFragment();
                 break;
             case 1:
-                selectedFragment = new DiscoverFragment();
+                selectedFragment = new CreditCardScannerFragment();
                 break;
             case 2:
                 selectedFragment = new CommunityFragment();
