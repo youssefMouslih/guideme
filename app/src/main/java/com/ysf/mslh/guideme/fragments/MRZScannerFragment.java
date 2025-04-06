@@ -1,15 +1,12 @@
-
 package com.ysf.mslh.guideme.fragments;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.camera.core.CameraSelector;
@@ -22,56 +19,45 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import com.googlecode.tesseract.android.TessBaseAPI;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
+import com.google.mlkit.vision.text.latin.TextRecognizerOptions;
 import com.ysf.mslh.guideme.R;
 
-import java.nio.ByteBuffer;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MRZScannerFragment extends Fragment {
     private PreviewView previewView;
-    private TextView resultText;
     private ExecutorService cameraExecutor;
-    private TessBaseAPI tessBaseAPI;
-    
+    private TextRecognizer textRecognizer;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                           Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mrz_scanner, container, false);
-        
         previewView = view.findViewById(R.id.viewFinder);
-        resultText = view.findViewById(R.id.resultText);
-        
-        // Initialize Tesseract
-        initTesseract();
-        
-        // Request camera permission
+
+        cameraExecutor = Executors.newSingleThreadExecutor();
+        textRecognizer = TextRecognition.getClient(TextRecognizerOptions.DEFAULT_OPTIONS);
+
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
                 == PackageManager.PERMISSION_GRANTED) {
             startCamera();
         } else {
-            requestPermissions(new String[]{Manifest.permission.CAMERA}, 100);
+            requestPermissions(new String[]{Manifest.permission.CAMERA}, 10);
         }
-        
-        cameraExecutor = Executors.newSingleThreadExecutor();
-        
+
         return view;
     }
-    
-    private void initTesseract() {
-        tessBaseAPI = new TessBaseAPI();
-        // Initialize Tesseract with trained data for MRZ
-        String dataPath = requireContext().getFilesDir() + "/tesseract/";
-        tessBaseAPI.init(dataPath, "mrz");
-    }
-    
+
     private void startCamera() {
         ListenableFuture<ProcessCameraProvider> cameraProviderFuture = 
             ProcessCameraProvider.getInstance(requireContext());
-            
+
         cameraProviderFuture.addListener(() -> {
             try {
                 ProcessCameraProvider cameraProvider = cameraProviderFuture.get();
@@ -81,74 +67,53 @@ public class MRZScannerFragment extends Fragment {
             }
         }, ContextCompat.getMainExecutor(requireContext()));
     }
-    
+
     private void bindPreview(ProcessCameraProvider cameraProvider) {
         Preview preview = new Preview.Builder().build();
-        
         CameraSelector cameraSelector = new CameraSelector.Builder()
                 .requireLensFacing(CameraSelector.LENS_FACING_BACK)
                 .build();
-                
+
         ImageAnalysis imageAnalysis = new ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build();
-                
-        imageAnalysis.setAnalyzer(cameraExecutor, this::analyzeMRZ);
-        
+
+        imageAnalysis.setAnalyzer(cameraExecutor, this::processImage);
+
         preview.setSurfaceProvider(previewView.getSurfaceProvider());
-        
-        cameraProvider.unbindAll();
+
         cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalysis);
     }
-    
-    private void analyzeMRZ(ImageProxy image) {
-        Bitmap bitmap = imageProxyToBitmap(image);
-        tessBaseAPI.setImage(bitmap);
-        
-        String result = tessBaseAPI.getUTF8Text();
-        if (isMRZFormat(result)) {
-            requireActivity().runOnUiThread(() -> {
-                resultText.setText(parseMRZ(result));
-            });
-        }
-        
-        image.close();
+
+    private void processImage(@NonNull ImageProxy image) {
+        InputImage inputImage = InputImage.fromMediaImage(
+            image.getImage(), 
+            image.getImageInfo().getRotationDegrees()
+        );
+
+        textRecognizer.process(inputImage)
+            .addOnSuccessListener(text -> {
+                String mrzText = text.getText();
+                if (isMRZFormat(mrzText)) {
+                    requireActivity().runOnUiThread(() -> 
+                        Toast.makeText(requireContext(), 
+                            "MRZ Found: " + mrzText, 
+                            Toast.LENGTH_SHORT).show()
+                    );
+                }
+            })
+            .addOnCompleteListener(task -> image.close());
     }
-    
-    private Bitmap imageProxyToBitmap(ImageProxy image) {
-        ByteBuffer buffer = image.getPlanes()[0].getBuffer();
-        byte[] bytes = new byte[buffer.capacity()];
-        buffer.get(bytes);
-        
-        Bitmap bitmap = Bitmap.createBitmap(
-            image.getWidth(), image.getHeight(), Bitmap.Config.ARGB_8888);
-            
-        // Convert YUV to RGB
-        // ... (YUV to RGB conversion code here)
-        
-        return bitmap;
-    }
-    
+
     private boolean isMRZFormat(String text) {
-        // Basic MRZ format check (can be enhanced)
         Pattern pattern = Pattern.compile("^[A-Z0-9<]{44}$", Pattern.MULTILINE);
-        Matcher matcher = pattern.matcher(text);
-        return matcher.find();
+        return pattern.matcher(text).find();
     }
-    
-    private String parseMRZ(String mrzText) {
-        StringBuilder parsed = new StringBuilder();
-        parsed.append("Document Type: ").append(mrzText.substring(0, 2)).append("\n");
-        parsed.append("Country: ").append(mrzText.substring(2, 5)).append("\n");
-        parsed.append("Document Number: ").append(mrzText.substring(5, 14)).append("\n");
-        // Add more parsing logic for other fields
-        return parsed.toString();
-    }
-    
+
     @Override
     public void onDestroy() {
         super.onDestroy();
         cameraExecutor.shutdown();
-        tessBaseAPI.end();
+        textRecognizer.close(); //added to close the recognizer
     }
 }
