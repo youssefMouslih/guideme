@@ -20,6 +20,7 @@ public class CreditCardScannerFragment extends Fragment {
     private static final int SCAN_REQUEST_CODE = 100;
     private TextView resultTextView;
 
+
     public CreditCardScannerFragment() {
         // Required empty public constructor
     }

@@ -52,7 +52,7 @@ app/
     └── res/
         ├── layout/             # XML layouts
         ├── drawable/           # Images and icons
-        └── values/            # App resources
+        └── values/            # App resources mmm
 ```
 
 ## Development Setup

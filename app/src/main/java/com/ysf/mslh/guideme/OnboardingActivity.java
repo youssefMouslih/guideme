@@ -51,6 +51,7 @@ public class OnboardingActivity extends AppIntro2 {
                 R.drawable.bg_button_rounded,
                 Color.WHITE,
                 Color.parseColor("#1A237E"),
+
                 Color.parseColor("#1A237E")
         ));
 

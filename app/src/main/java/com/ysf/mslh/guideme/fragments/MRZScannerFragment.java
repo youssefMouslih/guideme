@@ -110,7 +110,8 @@ public class MRZScannerFragment extends Fragment {
 
     private void analyzeMRZ(ImageProxy image) {
         InputImage inputImage = InputImage.fromMediaImage(
-            image.getImage(), 
+            image.getImage(),
+
             image.getImageInfo().getRotationDegrees()
         );
 
