@@ -34,7 +34,7 @@
                     android:background="@android:color/transparent"
                     android:gravity="top"
                     android:hint="Write your review..."
-                    android:minHeight="80dp"
+                    android:minHeight="50dp"
                     android:padding="8dp"
                     android:textSize="14sp" />
 
