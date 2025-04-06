@@ -11,6 +11,7 @@ import com.ysf.mslh.guideme.fragments.CommunityFragment;
 import com.ysf.mslh.guideme.fragments.DiscoverFragment;
 import com.ysf.mslh.guideme.fragments.HomeFragment;
 import com.ysf.mslh.guideme.fragments.ProfileFragment;
+import com.ysf.mslh.guideme.hiddenFragments.Booking;
 import com.ysf.mslh.guideme.hiddenFragments.experience;
 
 /**
@@ -72,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 selectedFragment = new HomeFragment();
                 break;
             case 1:
-                selectedFragment = new DiscoverFragment();
+                selectedFragment = new Booking();
                 break;
             case 2:
                 selectedFragment = new CommunityFragment();
