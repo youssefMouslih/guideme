@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 selectedFragment = new HomeFragment();
                 break;
             case 1:
-                selectedFragment = new MRZScannerFragment();
+                selectedFragment = new experience();
                 break;
             case 2:
                 selectedFragment = new CommunityFragment();
