@@ -42,7 +42,7 @@ dependencies {
     implementation 'com.rmtheis:tess-two:9.1.0'
     
     // OpenCV
-    implementation 'com.quickbirdstudios:opencv:4.7.0'
+    implementation 'org.opencv:opencv-android:4.7.0'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'com.ashokvarma.android:bottom-navigation-bar:2.2.0'
     implementation 'com.google.android.material:material:1.12.0'
