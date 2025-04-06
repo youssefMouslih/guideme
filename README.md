@@ -1,7 +1,33 @@
+# Guide Me - Android Travel Experience App
 
-# Guide Me - Android App
+Guide Me is a mobile application designed to help travelers discover authentic local experiences and connect with certified local guides. The app provides a seamless platform for exploring unique cultural experiences, local cuisine, and hidden gems.
 
-A mobile application designed to help travelers discover authentic local experiences and connect with local guides.
+## Development Requirements
+
+### Android Studio
+- Android Studio Arctic Fox (2020.3.1) or newer
+- Gradle version 7.2.2
+- Build tools version 33.0.1
+
+### Android Requirements
+- Minimum SDK: API 21 (Android 5.0)
+- Target SDK: API 34 (Android 14)
+- Compile SDK: 34
+
+### Required Permissions
+```xml
+<!-- Location Permissions -->
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
+<!-- Camera Permissions -->
+<uses-permission android:name="android.permission.CAMERA"/>
+<uses-feature android:name="android.hardware.camera" android:required="false"/>
+<uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+
+<!-- GPS Feature -->
+<uses-feature android:name="android.hardware.location.gps"/>
+```
 
 ## Features
 
