@@ -13,6 +13,10 @@ import com.ysf.mslh.guideme.fragments.HomeFragment;
 import com.ysf.mslh.guideme.fragments.ProfileFragment;
 import com.ysf.mslh.guideme.fragments.experience;
 
+/**
+ * Main activity class that handles the bottom navigation and fragment switching
+ * Implements tab selection listener for navigation and fragment interaction
+ */
 public class MainActivity extends AppCompatActivity implements BottomNavigationBar.OnTabSelectedListener,experience.OnFragmentInteractionListener
 {
 
@@ -21,13 +25,16 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize BottomNavigationBar
         BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
 
+        // Configure BottomNavigationBar
         bottomNavigationBar
                 .setMode(BottomNavigationBar.MODE_FIXED)
                 .setBackgroundStyle(BottomNavigationBar.BACKGROUND_STYLE_STATIC)
                 .setBarBackgroundColor(R.color.white);
 
+        // Add items to BottomNavigationBar
         bottomNavigationBar
                 .addItem(new BottomNavigationItem(R.drawable.ic_home, "Home")
                         .setActiveColorResource(R.color.main_color))
@@ -40,12 +47,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .setFirstSelectedPosition(0)
                 .initialise();
 
+        // Set tab selection listener
         bottomNavigationBar.setTabSelectedListener(this);
 
-        // Afficher le premier fragment (Home)
+        // Load the Home fragment initially
         loadFragment(new HomeFragment());
     }
 
+    // Method to load a fragment into the fragment container
     private void loadFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
@@ -53,9 +62,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 .commit();
     }
 
+    // Handle tab selection events
     @Override
     public void onTabSelected(int position) {
         Fragment selectedFragment = null;
+        // Determine which fragment to load based on the selected tab position
         switch (position) {
             case 0:
                 selectedFragment = new HomeFragment();
@@ -70,20 +81,24 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 selectedFragment = new ProfileFragment();
                 break;
         }
+        // Load the selected fragment
         if (selectedFragment != null) {
             loadFragment(selectedFragment);
         }
     }
 
+    // Handle tab unselected events
     @Override
     public void onTabUnselected(int position) {}
 
+    // Handle tab reselected events
     @Override
     public void onTabReselected(int position) {}
-    // This method is called from the experience fragment to switch to the Home tab
+
+    // Callback method from the experience fragment to navigate back to the home tab
     @Override
     public void onBackToHomeTab() {
-        // Change selected tab to the first tab (Home)
+        // Find the BottomNavigationBar and select the first tab (Home)
         BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         if (bottomNavigationBar != null) {
             bottomNavigationBar.selectTab(0); // Select the Home tab

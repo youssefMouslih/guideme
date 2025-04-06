@@ -15,11 +15,13 @@ import androidx.fragment.app.Fragment;
 import com.ysf.mslh.guideme.R;
 
 /**
- * A fragment that shows the login screen for the GuideMe app.
+ * Login Fragment that handles user authentication
+ * Provides login functionality with username/password
+ * and social media integration options
  */
 public class LoginFragment extends Fragment {
 
-    // UI Components
+    // UI Components for login form
     private EditText editUsername;
     private EditText editPassword;
     private Button btnSignIn;
@@ -54,11 +56,13 @@ public class LoginFragment extends Fragment {
 
         // Initialize UI components
         initViews(view);
+        // Set up click listeners for UI elements
         setupListeners();
 
         return view;
     }
 
+    // Initialize views by finding them in the layout
     private void initViews(View view) {
         editUsername = view.findViewById(R.id.editUsername);
         editPassword = view.findViewById(R.id.editPassword);
@@ -69,34 +73,42 @@ public class LoginFragment extends Fragment {
         txtSignUp = view.findViewById(R.id.txtSignUp);
     }
 
+    // Set up click listeners for various UI elements
     private void setupListeners() {
+        //Sign in button click listener
         btnSignIn.setOnClickListener(v -> handleSignIn());
 
+        // Forgot password textview click listener
         txtForgotPassword.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Forgot password clicked", Toast.LENGTH_SHORT).show();
             // Navigate to forgot password screen
         });
 
+        // Google sign in imageview click listener
         imgGoogle.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Google sign-in clicked", Toast.LENGTH_SHORT).show();
             // Handle Google sign-in
         });
 
+        // Facebook sign in imageview click listener
         imgFacebook.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Facebook sign-in clicked", Toast.LENGTH_SHORT).show();
             // Handle Facebook sign-in
         });
 
+        // Sign up textview click listener
         txtSignUp.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Sign up clicked", Toast.LENGTH_SHORT).show();
             // Navigate to sign up screen
         });
     }
 
+    // Handle sign in button click event
     private void handleSignIn() {
         String username = editUsername.getText().toString().trim();
         String password = editPassword.getText().toString().trim();
 
+        // Validate username and password
         if (username.isEmpty() || password.isEmpty()) {
             Toast.makeText(getContext(), "Please enter both username and password", Toast.LENGTH_SHORT).show();
             return;

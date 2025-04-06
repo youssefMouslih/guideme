@@ -1,3 +1,8 @@
+/**
+ * Experience Map Fragment
+ * Handles location services and map display functionality
+ * Uses OSMDroid for map rendering and location tracking
+ */
 package com.ysf.mslh.guideme.fragmentsExperience;
 
 import android.Manifest;
