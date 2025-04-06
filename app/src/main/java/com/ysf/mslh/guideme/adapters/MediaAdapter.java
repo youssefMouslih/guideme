@@ -1,4 +1,4 @@
-package com.ysf.mslh.guideme;
+package com.ysf.mslh.guideme.adapters;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,7 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.ysf.mslh.guideme.R;
-import com.ysf.mslh.guideme.MediaItem;
+import com.ysf.mslh.guideme.models.MediaItem;
 import java.util.List;
 import java.util.Random;
 

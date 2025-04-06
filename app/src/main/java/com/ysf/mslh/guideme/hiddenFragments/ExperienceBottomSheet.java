@@ -1,11 +1,10 @@
-package com.ysf.mslh.guideme.fragments;
+package com.ysf.mslh.guideme.hiddenFragments;
 
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
-import android.view.WindowManager;
 import android.util.DisplayMetrics;
 
 import androidx.annotation.NonNull;
@@ -15,8 +14,8 @@ import androidx.viewpager.widget.ViewPager;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.ysf.mslh.guideme.R;
+import com.ysf.mslh.guideme.adapters.ViewPagerAdapter;
 import com.ysf.mslh.guideme.fragmentsExperience.ExperienceAbout;
 import com.ysf.mslh.guideme.fragmentsExperience.ExperienceMap;
 import com.ysf.mslh.guideme.fragmentsExperience.ExperiencePhotos;
@@ -41,7 +40,7 @@ public class ExperienceBottomSheet extends BottomSheetDialogFragment {
         viewPager = view.findViewById(R.id.viewPager);
 
         // Initialisation de l'adaptateur pour le ViewPager
-        com.ysf.mslh.guideme.adapters.ViewPagerAdapter adapter = new com.ysf.mslh.guideme.adapters.ViewPagerAdapter(getChildFragmentManager());
+       ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
 
         // Ajouter des fragments et leurs titres
         adapter.addFragment(new ExperienceAbout(), "About");

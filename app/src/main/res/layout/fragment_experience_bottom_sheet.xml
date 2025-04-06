@@ -89,7 +89,7 @@
             app:tl_textSelectColor="@color/secondery_color"
             app:tl_textUnselectColor="@android:color/darker_gray" />
 
-        <com.ysf.mslh.guideme.NonSwipeableViewPager
+        <com.ysf.mslh.guideme.costumUi.NonSwipeableViewPager
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="250dp" />

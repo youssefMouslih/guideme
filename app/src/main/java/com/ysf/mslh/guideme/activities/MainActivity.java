@@ -1,4 +1,4 @@
-package com.ysf.mslh.guideme;
+package com.ysf.mslh.guideme.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -6,13 +6,12 @@ import androidx.fragment.app.FragmentManager;
 import android.os.Bundle;
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.ysf.mslh.guideme.R;
 import com.ysf.mslh.guideme.fragments.CommunityFragment;
-import com.ysf.mslh.guideme.fragments.CreditCardScannerFragment;
 import com.ysf.mslh.guideme.fragments.DiscoverFragment;
 import com.ysf.mslh.guideme.fragments.HomeFragment;
-import com.ysf.mslh.guideme.fragments.MRZScannerFragment;
 import com.ysf.mslh.guideme.fragments.ProfileFragment;
-import com.ysf.mslh.guideme.fragments.experience;
+import com.ysf.mslh.guideme.hiddenFragments.experience;
 
 /**
  * Main activity class that handles the bottom navigation and fragment switching
@@ -73,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
                 selectedFragment = new HomeFragment();
                 break;
             case 1:
-                selectedFragment = new experience();
+                selectedFragment = new DiscoverFragment();
                 break;
             case 2:
                 selectedFragment = new CommunityFragment();

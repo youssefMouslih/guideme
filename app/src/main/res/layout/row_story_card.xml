@@ -19,6 +19,7 @@
             app:cardCornerRadius="35dp">
 
             <ImageView
+                android:id="@+id/imgUser"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:background="@color/main_color"
@@ -27,6 +28,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
+            android:id="@+id/tvUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"

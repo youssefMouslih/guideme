@@ -15,9 +15,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 import com.ysf.mslh.guideme.R;
-import com.ysf.mslh.guideme.MediaAdapter;
-import com.ysf.mslh.guideme.MediaItem;
-import com.ysf.mslh.guideme.SampleDataGenerator;
+import com.ysf.mslh.guideme.adapters.MediaAdapter;
+import com.ysf.mslh.guideme.models.MediaItem;
+import com.ysf.mslh.guideme.utils.SampleDataGenerator;
 import java.util.List;
 
 /**

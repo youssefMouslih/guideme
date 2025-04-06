@@ -1,4 +1,4 @@
-package com.ysf.mslh.guideme;
+package com.ysf.mslh.guideme.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.github.appintro.AppIntro2;
 import com.github.appintro.AppIntroFragment;
 import com.ysf.mslh.guideme.R;
+import com.ysf.mslh.guideme.activities.MainActivity;
 
 public class OnboardingActivity extends AppIntro2 {
 

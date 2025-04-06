@@ -1,4 +1,4 @@
-package com.ysf.mslh.guideme.fragments;
+package com.ysf.mslh.guideme.hiddenFragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.ysf.mslh.guideme.R;
+
 public class experience extends Fragment {
     private OnFragmentInteractionListener mListener;
     private ImageView    backButton;

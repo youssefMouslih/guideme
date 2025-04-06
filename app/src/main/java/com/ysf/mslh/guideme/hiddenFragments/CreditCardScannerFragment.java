@@ -1,5 +1,5 @@
 
-package com.ysf.mslh.guideme.fragments;
+package com.ysf.mslh.guideme.hiddenFragments;
 
 import android.content.Intent;
 import android.os.Bundle;

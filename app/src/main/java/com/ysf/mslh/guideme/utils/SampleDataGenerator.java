@@ -1,6 +1,6 @@
-package com.ysf.mslh.guideme;
+package com.ysf.mslh.guideme.utils;
 
-import com.ysf.mslh.guideme.MediaItem;
+import com.ysf.mslh.guideme.models.MediaItem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

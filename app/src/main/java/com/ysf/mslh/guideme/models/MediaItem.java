@@ -1,4 +1,4 @@
-package com.ysf.mslh.guideme;
+package com.ysf.mslh.guideme.models;
 
 public class MediaItem {
     private String id;
