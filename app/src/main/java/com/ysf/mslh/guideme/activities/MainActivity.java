@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         // Find the BottomNavigationBar and select the first tab (Home)
         BottomNavigationBar bottomNavigationBar = findViewById(R.id.bottom_navigation_bar);
         if (bottomNavigationBar != null) {
-            bottomNavigationBar.selectTab(0); // Select the Home tab
+            bottomNavigationBar.selectTab(0);
         }
     }
 

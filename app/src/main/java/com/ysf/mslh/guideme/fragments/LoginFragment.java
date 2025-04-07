@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.ysf.mslh.guideme.R;
 
@@ -34,14 +36,6 @@ public class LoginFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of this fragment.
-     * @return A new instance of LoginFragment
-     */
-    public static LoginFragment newInstance() {
-        LoginFragment fragment = new LoginFragment();
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,6 +75,12 @@ public class LoginFragment extends Fragment {
         // Forgot password textview click listener
         txtForgotPassword.setOnClickListener(v -> {
             Toast.makeText(getContext(), "Forgot password clicked", Toast.LENGTH_SHORT).show();
+            {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flContiener, new PasswordForgetFragment());
+                fragmentTransaction.commit();
+            }
             // Navigate to forgot password screen
         });
 
@@ -98,6 +98,12 @@ public class LoginFragment extends Fragment {
 
         // Sign up textview click listener
         txtSignUp.setOnClickListener(v -> {
+           {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.flContiener, new SignupFragment());
+                fragmentTransaction.commit();
+            }
             Toast.makeText(getContext(), "Sign up clicked", Toast.LENGTH_SHORT).show();
             // Navigate to sign up screen
         });
@@ -119,14 +125,14 @@ public class LoginFragment extends Fragment {
         if (username.equals("reda_1") && password.length() > 0) {
             Toast.makeText(getContext(), "Sign in successful", Toast.LENGTH_SHORT).show();
 
-//            // Navigate to profile fragment
-//            // Example of navigation using FragmentManager
-//            if (getActivity() != null) {
-//                getActivity().getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragmentContainer, ProfileFragment.newInstance())
-//                        .addToBackStack(null)
-//                        .commit();
-//            }
+            // Navigate to profile fragment
+            // Example of navigation using FragmentManager
+            if (getActivity() != null) {
+                getActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.flContiener, ProfileFragment.newInstance())
+                        .addToBackStack(null)
+                        .commit();
+            }
         } else {
             Toast.makeText(getContext(), "Invalid credentials", Toast.LENGTH_SHORT).show();
         }

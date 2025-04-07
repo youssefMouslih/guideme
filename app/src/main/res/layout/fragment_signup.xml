@@ -33,7 +33,6 @@
         android:id="@+id/imgLogo"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="fitXY"
         android:layout_marginTop="30dp"
         android:src="@drawable/ic_guidemelogo"
         app:layout_constraintEnd_toEndOf="parent"
@@ -90,72 +89,71 @@
 
             <!-- Username Input -->
             <TextView
-                android:id="@+id/txtLabelUsername"
+                android:id="@+id/txtLabeemail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="Username or email"
+                android:text="Email"
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/editUsername"
+                android:id="@+id/editemail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/ic_baseline_email_24"
+                android:drawablePadding="8dp"
+                android:hint="Enter username or email"
+                android:inputType="textEmailAddress"
+                android:paddingVertical="8dp"
+                android:text="reda_1@gmail.com"
+                android:textColor="@android:color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtLabeemail" />
+
+            <View
+                android:id="@+id/divideremail"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#E91E63"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editemail" />
+
+            <!-- Password Input -->
+            <TextView
+                android:id="@+id/txtLabelusername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Username"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/divideremail" />
+
+            <EditText
+                android:id="@+id/editusername"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:background="@android:color/transparent"
                 android:drawableStart="@drawable/ic_baseline_person_24"
                 android:drawablePadding="8dp"
-                android:hint="Enter username or email"
-                android:inputType="textEmailAddress"
-                android:paddingVertical="8dp"
-                android:text="reda_1"
-                android:textColor="@android:color/black"
-                android:textSize="16sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLabelUsername" />
-
-            <View
-                android:id="@+id/dividerUsername"
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:background="#E91E63"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editUsername" />
-
-            <!-- Password Input -->
-            <TextView
-                android:id="@+id/txtLabelPassword"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Password"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/dividerUsername" />
-
-            <EditText
-                android:id="@+id/editPassword"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:background="@android:color/transparent"
-                android:drawableStart="@drawable/ic_baseline_lock_24"
-                android:drawablePadding="8dp"
                 android:hint="Enter password"
-                android:inputType="textPassword"
                 android:paddingVertical="8dp"
                 android:text="••••••"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtLabelPassword" />
+                app:layout_constraintTop_toBottomOf="@+id/txtLabelusername" />
 
             <View
                 android:id="@+id/dividerPassword"
@@ -164,19 +162,44 @@
                 android:background="#E91E63"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editPassword" />
-
-            <!-- Forgot Password -->
+                app:layout_constraintTop_toBottomOf="@+id/editusername" />
+            <!-- Password Input -->
             <TextView
-                android:id="@+id/txtForgotPassword"
+                android:id="@+id/txtLabelPassword1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="24dp"
+                android:text="Password"
+                android:textColor="@android:color/darker_gray"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editusername" />
+            <!-- Forgot Password -->
+            <EditText
+                android:id="@+id/txtForgotPassword"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
+                android:paddingVertical="8dp"
+                android:drawablePadding="8dp"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
+                android:background="@android:color/transparent"
+                android:inputType="textPassword"
                 android:text="Forgot Password?"
-                android:textColor="#E91E63"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textColor="#000000"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dividerPassword" />
+            <View
+                android:id="@+id/dividerPassword1"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="#E91E63"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtForgotPassword" />
+
 
             <!-- Sign In Button -->
             <androidx.appcompat.widget.AppCompatButton
@@ -186,7 +209,7 @@
                 android:layout_marginTop="32dp"
                 android:background="@drawable/bg_button_rounded"
                 android:paddingVertical="12dp"
-                android:text="Sign in"
+                android:text="Sign Up"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
@@ -194,43 +217,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtForgotPassword" />
 
-            <!-- Or sign in with -->
-            <TextView
-                android:id="@+id/txtOrSignIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="or sign in with"
-                android:textColor="@android:color/darker_gray"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
-            <!-- Social Buttons -->
-            <LinearLayout
-                android:id="@+id/layoutSocialButtons"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtOrSignIn">
-
-                <ImageView
-                    android:id="@+id/imgGoogle"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:layout_marginEnd="24dp"
-                    android:src="@drawable/ic_google" />
-
-                <ImageView
-                    android:id="@+id/imgFacebook"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:src="@drawable/ic_facebook" />
-            </LinearLayout>
 
             <!-- No Account -->
             <TextView
@@ -238,19 +225,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:text="No Account? Unlock Authentic Adventures Today. "
+                android:text="Already exploring with us? Continue your local story "
                 android:textColor="@android:color/darker_gray"
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutSocialButtons" />
+                app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
             <TextView
-                android:id="@+id/txtSignUp"
+                android:id="@+id/txtSignIn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:text="Sign Up"
+                android:text="Sign In"
                 android:textColor="#03A9F4"
                 android:textSize="14sp"
                 android:textStyle="bold"
