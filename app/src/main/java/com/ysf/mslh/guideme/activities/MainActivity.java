@@ -12,6 +12,8 @@ import com.ysf.mslh.guideme.fragments.DiscoverFragment;
 import com.ysf.mslh.guideme.fragments.HomeFragment;
 import com.ysf.mslh.guideme.fragments.ProfileFragment;
 import com.ysf.mslh.guideme.hiddenFragments.Booking;
+import com.ysf.mslh.guideme.hiddenFragments.CreditCardScannerFragment;
+import com.ysf.mslh.guideme.hiddenFragments.MRZScannerFragment;
 import com.ysf.mslh.guideme.hiddenFragments.experience;
 
 /**
@@ -70,10 +72,10 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationB
         // Determine which fragment to load based on the selected tab position
         switch (position) {
             case 0:
-                selectedFragment = new HomeFragment();
+                selectedFragment = new MRZScannerFragment();
                 break;
             case 1:
-                selectedFragment = new Booking();
+                selectedFragment = new CreditCardScannerFragment();
                 break;
             case 2:
                 selectedFragment = new CommunityFragment();
